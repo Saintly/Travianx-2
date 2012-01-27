@@ -1,0 +1,1 @@
+<?php echo nl2br($this->siteNews).'<p class="f16" align="center"><a href="village1.php?_gn_">'.text_gotonext_lang.'</a></p>';
