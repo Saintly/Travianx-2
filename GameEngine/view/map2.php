@@ -1,16 +1,4 @@
 <?php
-/**
-*
-* @ This file is created by Decodeby.US
-* @ deZender Public (PHP5 Decompiler)
-*
-* @	Version			:	1.0.0.0
-* @	Author			:	Ps2Gamer & Cyko
-* @	Release on		:	30.05.2011
-* @	Official site	:	http://decodeby.us
-*
-*/
-
 require_once( LANG_UI_PATH."map.php" );
 echo "<div id=\"mbig\">\r\n<div id=\"lightframe\">\r\n<div id=\"darkframe\">\r\n\t<a id=\"map_popclose\" href=\"\" onclick=\"self.close();return false;\"><img src=\"assets/x.gif\" alt=\"";
 echo LANGUI_MAP_T14;

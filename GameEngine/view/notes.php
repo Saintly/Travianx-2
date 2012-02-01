@@ -1,16 +1,4 @@
 <?php
-/**
-*
-* @ This file is created by Decodeby.US
-* @ deZender Public (PHP5 Decompiler)
-*
-* @	Version			:	1.0.0.0
-* @	Author			:	Ps2Gamer & Cyko
-* @	Release on		:	30.05.2011
-* @	Official site	:	http://decodeby.us
-*
-*/
-
 echo "<h1>";
 echo text_pnotes_lang;
 echo "</h1>\r\n<form method=\"post\" action=\"notes.php\">\r\n<div id=\"block\">\r\n\t<textarea name=\"notes\" id=\"notice\">";

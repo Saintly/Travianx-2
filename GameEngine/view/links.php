@@ -1,16 +1,4 @@
 <?php
-/**
-*
-* @ This file is created by Decodeby.US
-* @ deZender Public (PHP5 Decompiler)
-*
-* @	Version			:	1.0.0.0
-* @	Author			:	Ps2Gamer & Cyko
-* @	Release on		:	30.05.2011
-* @	Official site	:	http://decodeby.us
-*
-*/
-
 require_once( LANG_UI_PATH."links.php" );
 echo "<h1>";
 echo LANGUI_LNKS_T1;

@@ -1,16 +1,4 @@
 <?php
-/**
-*
-* @ This file is created by Decodeby.US
-* @ deZender Public (PHP5 Decompiler)
-*
-* @	Version			:	1.0.0.0
-* @	Author			:	Ps2Gamer & Cyko
-* @	Release on		:	30.05.2011
-* @	Official site	:	http://decodeby.us
-*
-*/
-
 require_once( LANG_UI_PATH."resources.php" );
 echo "<h1><img class=\"point\" src=\"assets/x.gif\" alt=\"\" title=\"\">";
 echo LANGUI_RES_T1;
