@@ -1,12 +1,4 @@
 <?php
-/*********************/
-/*                   */
-/*  Dezend for PHP5  */
-/*         NWS       */
-/*      Nulled.WS    */
-/*                   */
-/*********************/
-
 require_once( LANG_UI_PATH."custbuilds.php" );
 echo "<p></p>\r\n<table cellpadding=\"1\" cellspacing=\"1\" class=\"build_details\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td>";
 echo LANGUI_CUSTBU_ACD_t1;

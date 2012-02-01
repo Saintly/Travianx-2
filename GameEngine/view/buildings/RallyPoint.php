@@ -1,12 +1,4 @@
 <?php
-/*********************/
-/*                   */
-/*  Dezend for PHP5  */
-/*         NWS       */
-/*      Nulled.WS    */
-/*                   */
-/*********************/
-
 require_once( LANG_UI_PATH."custbuilds.php" );
 echo "<p></p><p></p>\r\n\r\n<div id=\"textmenu\">\r\n<a href=\"build.php?id=";
 echo $this->buildingIndex;

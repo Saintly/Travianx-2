@@ -1,12 +1,4 @@
 <?php
-/*********************/
-/*                   */
-/*  Dezend for PHP5  */
-/*         NWS       */
-/*      Nulled.WS    */
-/*                   */
-/*********************/
-
 require_once( LANG_UI_PATH."custbuilds.php" );
 echo "<p></p>\r\n<form method=\"post\" name=\"snd\" action=\"build.php?id=";
 echo $this->buildingIndex;

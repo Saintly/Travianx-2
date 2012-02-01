@@ -1,12 +1,4 @@
 <?php
-/*********************/
-/*                   */
-/*  Dezend for PHP5  */
-/*         NWS       */
-/*      Nulled.WS    */
-/*                   */
-/*********************/
-
 require_once( LANG_UI_PATH."custbuilds.php" );
 echo "<h2>";
 echo LANGUI_CUSTBU_M_DROP;

@@ -1,12 +1,4 @@
 <?php
-/*********************/
-/*                   */
-/*  Dezend for PHP5  */
-/*         NWS       */
-/*      Nulled.WS    */
-/*                   */
-/*********************/
-
 require_once( LANG_UI_PATH."custbuilds.php" );
 $buildingMetadata = $this->gameMetadata['items'][$Var_192];
 $bLevel = $this->buildings[$this->buildingIndex]['level'];
