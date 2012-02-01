@@ -1,0 +1,147 @@
+<?php
+/*********************/
+/*                   */
+/*  Dezend for PHP5  */
+/*         NWS       */
+/*      Nulled.WS    */
+/*                   */
+/*********************/
+
+require_once( LANG_UI_PATH."custbuilds.php" );
+$buildingMetadata = $this->gameMetadata['items'][$Var_192];
+$bLevel = $this->buildings[$this->buildingIndex]['level'];
+echo "<p></p>\r\n<table cellpadding=\"1\" cellspacing=\"1\" class=\"build_details\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td>";
+echo LANGUI_CUSTBU_TWH_t1;
+echo "</td>\r\n\t\t\t<td>";
+echo LANGUI_CUSTBU_TWH_t2;
+echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
+if ( $buildingMetadata['celebrations']['small']['level'] <= $this->buildProperties['building']['level'] )
+{
+    echo "\t\t<tr>\r\n\t\t\t<td class=\"desc\">\r\n\t\t\t\t<div class=\"tit\"><a href=\"#\" onclick=\"return showManual(4, ";
+    echo $this->buildProperties['building']['item_id'];
+    echo ");\">";
+    echo LANGUI_CUSTBU_TWH_t3;
+    echo "</a> ";
+    echo "<s";
+    echo "pan class=\"info\">(";
+    echo $buildingMetadata['celebrations']['small']['value'];
+    echo " ";
+    echo LANGUI_CUSTBU_TWH_t4;
+    echo ")</span></div>\r\n\t\t\t\t<div class=\"details\">\r\n\t\t\t\t\t<img class=\"r1\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_1;
+    echo "\" title=\"";
+    echo item_title_1;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $buildingMetadata['celebrations']['small']['resources'][1];
+    echo "</span>|<img class=\"r2\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_2;
+    echo "\" title=\"";
+    echo item_title_2;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $buildingMetadata['celebrations']['small']['resources'][2];
+    echo "</span>|<img class=\"r3\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_3;
+    echo "\" title=\"";
+    echo item_title_3;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $buildingMetadata['celebrations']['small']['resources'][3];
+    echo "</span>|<img class=\"r4\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_4;
+    echo "\" title=\"";
+    echo item_title_4;
+    echo "\">";
+    echo "|<img class=\"clock\" src=\"assets/x.gif\" alt=\"";
+    echo text_period_lang;
+    echo "\" title=\"";
+    echo text_period_lang;
+    echo "\">";
+    echo ->intval( intval( $buildingMetadata['celebrations']['small']['time_consume'] / $this->gameSpeed * ( 10 / ( $bLevel + 9 ) ) ) );
+    echo $this->getResourceGoldExchange( $buildingMetadata['celebrations']['small']['resources'], 0, $this->buildingIndex );
+    echo "\t\t\t\t</div>\r\n\t\t\t\t";
+    echo "<s";
+    echo "pan class=\"none\">";
+    echo $this->getActionText2( $buildingMetadata['celebrations']['small']['resources'] );
+    echo "</span>\r\n\t\t\t</td>\r\n\t\t\t<td class=\"act\">";
+    echo $this->getActionText3( $buildingMetadata['celebrations']['small']['resources'], "a=1", LANGUI_CUSTBU_TWH_t5, QS_TOWNHALL_CELEBRATION );
+    echo "</td>\r\n\t\t</tr>\r\n\t\t";
+}
+echo "\t\t";
+if ( $buildingMetadata['celebrations']['large']['level'] <= $this->buildProperties['building']['level'] )
+{
+    echo "\t\t<tr>\r\n\t\t\t<td class=\"desc\">\r\n\t\t\t\t<div class=\"tit\"><a href=\"#\" onclick=\"return showManual(4, ";
+    echo $this->buildProperties['building']['item_id'];
+    echo ");\">";
+    echo LANGUI_CUSTBU_TWH_t6;
+    echo "</a> ";
+    echo "<s";
+    echo "pan class=\"info\">(";
+    echo $buildingMetadata['celebrations']['large']['value'];
+    echo " ";
+    echo LANGUI_CUSTBU_TWH_t4;
+    echo ")</span></div>\r\n\t\t\t\t<div class=\"details\">\r\n\t\t\t\t\t<img class=\"r1\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_1;
+    echo "\" title=\"";
+    echo item_title_1;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $buildingMetadata['celebrations']['large']['resources'][1];
+    echo "</span>|<img class=\"r2\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_2;
+    echo "\" title=\"";
+    echo item_title_2;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $buildingMetadata['celebrations']['large']['resources'][2];
+    echo "</span>|<img class=\"r3\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_3;
+    echo "\" title=\"";
+    echo item_title_3;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $buildingMetadata['celebrations']['large']['resources'][3];
+    echo "</span>|<img class=\"r4\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_4;
+    echo "\" title=\"";
+    echo item_title_4;
+    echo "\">";
+    echo $buildingMetadata['celebrations']['large']['resources'][4];
+    echo "|<img class=\"clock\" src=\"assets/x.gif\" alt=\"";
+    echo text_period_lang;
+    echo "\" title=\"";
+    echo text_period_lang;
+    echo "\">";
+    echo ->intval( intval( $buildingMetadata['celebrations']['large']['time_consume'] / $this->gameSpeed * ( 10 / ( $bLevel + 9 ) ) ) );
+    echo $this->getResourceGoldExchange( $buildingMetadata['celebrations']['large']['resources'], 0, $this->buildingIndex );
+    echo "\t\t\t\t</div>\r\n\t\t\t\t";
+    echo "<s";
+    echo "pan class=\"none\">";
+    echo $this->getActionText2( $buildingMetadata['celebrations']['large']['resources'] );
+    echo "</span>\r\n\t\t\t</td>\r\n\t\t\t<td class=\"act\">";
+    echo $this->getActionText3( $buildingMetadata['celebrations']['large']['resources'], "a=2", LANGUI_CUSTBU_TWH_t5, QS_TOWNHALL_CELEBRATION );
+    echo "</td>\r\n\t\t</tr>\r\n\t\t";
+}
+echo "\t</tbody>\r\n</table>\r\n";
+if ( isset( $this->queueModel->tasksInQueue[QS_TOWNHALL_CELEBRATION] ) )
+{
+    echo "<table cellpadding=\"1\" cellspacing=\"1\" class=\"under_progress\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td>";
+    echo LANGUI_CUSTBU_TWH_t7;
+    echo "</td>\r\n\t\t\t<td>";
+    echo text_period_lang;
+    echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td class=\"desc\">";
+    echo $Tmp_193 ? LANGUI_CUSTBU_TWH_t3 : LANGUI_CUSTBU_TWH_t6;
+    echo "</td>\r\n\t\t\t<td class=\"dur\">";
+    echo "<s";
+    echo "pan id=\"timer1\">";
+    echo ( $this->queueModel->tasksInQueue[QS_TOWNHALL_CELEBRATION][0]['remainingSeconds'] );
+    echo "</span></td>\r\n\t\t</tr>\r\n\t\t<tr class=\"next\"><td colspan=\"2\">&nbsp;</td></tr>\r\n\t</tbody>\r\n</table>\r\n";
+}
+?>

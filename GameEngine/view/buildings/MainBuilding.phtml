@@ -1,0 +1,74 @@
+<?php
+/*********************/
+/*                   */
+/*  Dezend for PHP5  */
+/*         NWS       */
+/*      Nulled.WS    */
+/*                   */
+/*********************/
+
+require_once( LANG_UI_PATH."custbuilds.php" );
+echo "<h2>";
+echo LANGUI_CUSTBU_M_DROP;
+echo ":</h2>\r\n<p>";
+echo LANGUI_CUSTBU_M_DROPDESC;
+echo ".</p>\r\n";
+if ( isset( $this->queueModel->tasksInQueue[QS_BUILD_DROP] ) )
+{
+    $qtask = $this->queueModel->tasksInQueue[QS_BUILD_DROP][0];
+    echo $this->buildingIndex;
+    echo "&d&qid=";
+    echo $qtask['id'];
+    echo "&k=";
+    echo $this->data['update_key'];
+    echo "\"><img class=\"del\" src=\"assets/x.gif\" title=\"";
+    echo LANGUI_CUSTBU_M_CANCEL;
+    echo "\" alt=\"";
+    echo LANGUI_CUSTBU_M_CANCEL;
+    echo "\"></a></td>\r\n\t\t\t<td>";
+    echo constant( "item_".$qtask['building_id'] );
+    echo " (";
+    echo level_lang;
+    echo " ";
+    echo $this->buildings[$qtask['proc_params']]['level'];
+    echo ")</td>\r\n\t\t\t<td>";
+    echo time_remain_lang;
+    echo " ";
+    echo "<s";
+    echo "pan id=\"timer1\">";
+    echo ( $qtask['remainingSeconds'] );
+    echo "</span> ";
+    echo time_hour_lang;
+    echo "</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n";
+}
+else
+{
+    echo "<div id=\"contract\">\r\n<form class=\"demolish_building\" action=\"build.php?id=";
+    echo $this->buildingIndex;
+    echo "\" method=\"post\" style=\"display:inline\">\r\n\t";
+    echo "<s";
+    echo "elect name=\"drbid\" class=\"dropdown\">\r\n\t\t";
+    $i = 19;
+    $_c = sizeof( $this->buildings );
+    while ( $i < $_c )
+    {
+        echo "\t\t<option value=\"";
+        echo $i;
+        echo "\">";
+        echo $i.". ";
+        if ( 0 < $this->buildings[$Var_1320]['item_id'] )
+        {
+            echo constant( "item_".$this->buildings[$i]['item_id'] )." ".$this->buildings[$i]['level'];
+        }
+        else
+        {
+            echo LANGUI_CUSTBU_M_EMPTY;
+        }
+        echo "</option>\r\n\t\t";
+        ++$i;
+    }
+    echo "\t</select>\r\n\t<input id=\"btn_demolish\" name=\"ok\" class=\"dynamic_img\" type=\"image\" src=\"assets/x.gif\" alt=\"";
+    echo LANGUI_CUSTBU_M_DROPBTN;
+    echo "\">\r\n</form>\r\n</div>\r\n";
+}
+?>

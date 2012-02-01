@@ -1,0 +1,245 @@
+<?php
+/*********************/
+/*                   */
+/*  Dezend for PHP5  */
+/*         NWS       */
+/*      Nulled.WS    */
+/*                   */
+/*********************/
+
+require_once( LANG_UI_PATH."custbuilds.php" );
+echo "<div id=\"textmenu\">\r\n   <a href=\"build.php?id=";
+echo $this->buildingIndex;
+echo "\"";
+if ( $this->selectedTabIndex == 0 )
+{
+    echo " class=\"selected\"";
+}
+echo ">";
+echo LANGUI_CUSTBU_HRO_p1;
+echo "</a>\r\n | <a href=\"build.php?id=";
+echo $this->buildingIndex;
+echo "&t=1\"";
+if ( $this->selectedTabIndex == 1 )
+{
+    echo " class=\"selected\"";
+}
+echo ">";
+echo LANGUI_CUSTBU_HRO_p2;
+echo "</a>\r\n</div>\r\n";
+if ( $this->selectedTabIndex == 0 )
+{
+    if ( !$this->hasHero )
+    {
+        if ( !isset( $this->queueModel->tasksInQueue[$this->troopsUpgradeType] ) )
+        {
+            echo "<table class=\"build_details\" cellpadding=\"1\" cellspacing=\"1\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td colspan=\"2\">";
+            echo LANGUI_CUSTBU_HRO_p1_t1;
+            echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
+            $_c = 0;
+            foreach ( $this->troops as $tid => $tnum )
+            {
+                if ( $tnum <= 0 )
+                {
+                    continue;
+                }
+                ++$_c;
+                $troopMetadata = $this->gameMetadata['troops'][$tid];
+                $lvlTime = intval( $troopMetadata['training_time_consume'] / $this->gameSpeed * ( 10 / ( $this->buildProperties['building']['level'] + 9 ) ) ) * 12;
+                $res = array( "1" => $troopMetadata['training_resources'][1] * 2, "2" => $troopMetadata['training_resources'][2] * 2, "3" => $troopMetadata['training_resources'][3] * 2, "4" => $troopMetadata['training_resources'][4] * 2 );
+                echo "\t\t<tr>\r\n\t\t\t<td class=\"desc\">\r\n\t\t\t\t<div class=\"tit\">\r\n\t\t\t\t\t<img class=\"unit u";
+                echo $tid;
+                echo "\" src=\"assets/x.gif\" alt=\"";
+                echo constant( "troop_".$tid );
+                echo "\" title=\"";
+                echo constant( "troop_".$tid );
+                echo "\"> <a href=\"#\" onclick=\"return showManual(3,";
+                echo $tid;
+                echo ");\">";
+                echo constant( "troop_".$tid );
+                echo "</a>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"details\">\r\n\t\t\t\t\t<img class=\"r1\" src=\"assets/x.gif\" alt=\"";
+                echo item_title_1;
+                echo "\" title=\"";
+                echo item_title_1;
+                echo "\">";
+                echo "<s";
+                echo "pan class=\"little_res\">";
+                echo $res[1];
+                echo "</span>|<img class=\"r2\" src=\"assets/x.gif\" alt=\"";
+                echo item_title_2;
+                echo "\" title=\"";
+                echo item_title_2;
+                echo "\">";
+                echo $res[2];
+                echo "|<img class=\"r3\" src=\"assets/x.gif\" alt=\"";
+                echo item_title_3;
+                echo "\" title=\"";
+                echo item_title_3;
+                echo "\">";
+                echo $res[3];
+                echo "|<img class=\"r4\" src=\"assets/x.gif\" alt=\"";
+                echo item_title_4;
+                echo "\" title=\"";
+                echo item_title_4;
+                echo "\">";
+                echo $res[4];
+                echo "|<img class=\"clock\" src=\"assets/x.gif\" alt=\"";
+                echo text_period_lang;
+                echo "\" title=\"";
+                echo text_period_lang;
+                echo "\">";
+                echo ( $lvlTime );
+                echo $this->getResourceGoldExchange( $res, 0, $this->buildingIndex );
+                echo "\t\t\t\t</div>\r\n\t\t\t\t";
+                echo $this->getActionText2( $res );
+                echo "\t\t\t</td>\r\n\t\t\t<td class=\"act\">";
+                echo $this->getActionText3( $res, "a=".$tid, LANGUI_CUSTBU_HRO_p1_t7, $this->troopsUpgradeType );
+                echo "</td>\r\n\t\t</tr>\r\n\t\t";
+            }
+            if ( $_c == 0 )
+            {
+                echo "\t\t<tr><td colspan=\"2\" class=\"none\">";
+                echo LANGUI_CUSTBU_HRO_p1_t2;
+                echo "</td></tr>\r\n\t\t";
+            }
+            echo "\t</tbody>\r\n</table>\r\n";
+        }
+        else
+        {
+            echo "<p>";
+            echo LANGUI_CUSTBU_HRO_p1_t3;
+            echo " <b>";
+            echo "<s";
+            echo "pan id=\"timer1\">";
+            echo ( $this->queueModel->tasksInQueue[$this->troopsUpgradeType][0]['remainingSeconds'] );
+            echo "</span></b> ";
+            echo time_hour_lang;
+        }
+    }
+    else
+    {
+        echo "<form method=\"post\" name=\"snd\" action=\"build.php?id=";
+        echo $this->buildingIndex;
+        echo "\">\r\n<table id=\"distribution\" cellpadding=\"1\" cellspacing=\"1\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th colspan=\"2\">";
+        echo $this->data['hero_name'];
+        echo " ";
+        echo level_lang;
+        echo " ";
+        echo $this->data['hero_level'];
+        echo " ";
+        echo "<s";
+        echo "pan class=\"info\">(";
+        echo constant( "troop_".$this->data['hero_troop_id'] );
+        echo ")</span></th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<th>";
+        echo LANGUI_CUSTBU_HRO_p1_t4;
+        echo ":</th>\r\n\t\t\t<td class=\"val\">";
+        echo $this->data['hero_points'];
+        echo "</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th>";
+        echo LANGUI_CUSTBU_HRO_p1_t5;
+        echo ":</th>\r\n\t\t\t<td class=\"val\"><input tabindex=\"6\" type=\"text\" name=\"hname\" value=\"";
+        echo htmlspecialchars( $this->data['hero_name'] );
+        echo "\" maxlength=\"20\" class=\"text\"></td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<p class=\"btn\"><input type=\"image\" value=\"\" tabindex=\"9\" name=\"s1\" id=\"btn_save\" class=\"dynamic_img\" src=\"assets/x.gif\" alt=\"";
+        echo LANGUI_CUSTBU_HRO_p1_t6;
+        echo "\"></p>\r\n</form>\r\n";
+    }
+}
+else
+{
+    if ( $this->selectedTabIndex == 1 )
+    {
+        echo "<table id=\"oases\" cellpadding=\"1\" cellspacing=\"1\">\r\n\t<thead>\r\n\t\t<tr><th colspan=\"5\">";
+        echo LANGUI_CUSTBU_HRO_p2_t1;
+        echo "</th></tr>\r\n\t\t<tr>\r\n\t\t\t<td>&nbsp;</td>\r\n\t\t\t<td>";
+        echo LANGUI_CUSTBU_HRO_p2_t2;
+        echo "</td>\r\n\t\t\t<td>";
+        echo LANGUI_CUSTBU_HRO_p2_t3;
+        echo "</td>\r\n\t\t\t<td>";
+        echo LANGUI_CUSTBU_HRO_p2_t4;
+        echo "</td>\r\n\t\t\t<td>";
+        echo LANGUI_CUSTBU_HRO_p2_t5;
+        echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
+        foreach ( $this->villageOases as $oasis )
+        {
+            echo "\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t\t";
+            if ( !isset( $this->queueModel->tasksInQueue[QS_LEAVEOASIS][$oasis['id']] ) )
+            {
+                echo "\t\t\t\t<a href=\"build.php?id=";
+                echo $this->buildingIndex;
+                echo "&t=1&a=";
+                echo $oasis['id'];
+                echo "&k=";
+                echo $this->data['update_key'];
+                echo "\"><img class=\"del\" src=\"assets/x.gif\" alt=\"";
+                echo LANGUI_CUSTBU_HRO_p2_t6;
+                echo "\" title=\"";
+                echo LANGUI_CUSTBU_HRO_p2_t6;
+                echo "\"></a>\r\n\t\t\t\t";
+            }
+            echo "\t\t\t</td>\r\n\t\t\t<td class=\"nam\"><a href=\"village3.php?id=";
+            echo $oasis['id'];
+            echo "\">";
+            echo LANGUI_CUSTBU_HRO_p2_t7;
+            echo "</a></td>\r\n\t\t\t<td class=\"aligned_coords\"><div class=\"cox\">(";
+            echo $oasis['rel_x'];
+            echo "</div><div class=\"pi\">|</div><div class=\"coy\">";
+            echo $oasis['rel_y'];
+            echo ")</div></td>\r\n\t\t\t<td class=\"zp\">";
+            echo $oasis['allegiance_percent'];
+            echo "%</td>\r\n\t\t\t<td class=\"res\">\r\n";
+            $oid = $this->setupMetadata['oasis'][$oasis['image_num']];
+            $str = "";
+            foreach ( $oid as $k => $v )
+            {
+                if ( $str != "" )
+                {
+                    $str .= PHP_EOL." ".text_and_lang." ";
+                }
+                $str .= sprintf( "<img class=\"r%s\" src=\"assets/x.gif\" alt=\"%s\" title=\"%s\">+%s%%", $k, constant( "item_title_".$k ), constant( "item_title_".$k ), $v );
+            }
+            echo $str;
+            echo "</td>\r\n\t\t</tr>\r\n\t\t";
+        }
+        echo "\t</tbody>\r\n</table><br/><br/>\r\n\r\n";
+        if ( isset( $this->queueModel->tasksInQueue[QS_LEAVEOASIS] ) )
+        {
+            echo "<h2>";
+            echo LANGUI_CUSTBU_HRO_p2_t6;
+            echo "</h2>\r\n<table id=\"leave\" cellpadding=\"1\" cellspacing=\"1\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td>";
+            echo LANGUI_CUSTBU_HRO_p2_t2;
+            echo "</td>\r\n\t\t\t<td>";
+            echo LANGUI_CUSTBU_HRO_p2_t3;
+            echo "</td>\r\n\t\t\t<td>";
+            echo text_period_lang;
+            echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
+            foreach ( $this->queueModel->tasksInQueue[QS_LEAVEOASIS] as $oasisId => $qtArray )
+            {
+                $qt = $qtArray[0];
+                $coordArray = explode( " ", $qt['proc_params'] );
+                echo "\t\t<tr>\r\n\t\t\t<td class=\"nam\">\r\n\t\t\t\t<a href=\"build.php?id=";
+                echo $this->buildingIndex;
+                echo "&t=1&qid=";
+                echo $qt['id'];
+                echo "\"><img class=\"del\" src=\"assets/x.gif\" alt=\"";
+                echo LANGUI_CUSTBU_HRO_p2_t8;
+                echo "\" title=\"";
+                echo LANGUI_CUSTBU_HRO_p2_t8;
+                echo "\"></a>\r\n\t\t\t\t<a href=\"village3.php?id=";
+                echo $oasisId;
+                echo "\">";
+                echo LANGUI_CUSTBU_HRO_p2_t7;
+                echo "</a>\r\n\t\t\t</td>\r\n\t\t\t<td class=\"aligned_coords\"><div class=\"cox\">(";
+                echo $coordArray[0];
+                echo "</div><div class=\"pi\">|</div><div class=\"coy\">";
+                echo $coordArray[1];
+                echo ")</div></td>\r\n\t\t\t<td class=\"dur\">";
+                echo "<s";
+                echo "pan id=\"timer1\">";
+                echo ( $qt['remainingSeconds'] );
+                echo "</span></td>\r\n\t\t</tr>\r\n\t\t";
+            }
+            echo "\t</tbody>\r\n</table>\r\n";
+        }
+        echo "<br/>\r\n";
+    }
+}
+?>

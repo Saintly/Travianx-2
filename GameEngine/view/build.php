@@ -55,7 +55,7 @@ if(!$this->buildProperties['emptyPlace']){
         }
         if ( $this->buildingView != "" )
         {
-            require( VIEW_PATH."buildings/".$this->buildingView.".phtml" );
+            require( VIEW_PATH."buildings/".$this->buildingView.".php" );
         }
     }
     echo "\t";

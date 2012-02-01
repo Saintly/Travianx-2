@@ -1,0 +1,152 @@
+<?php
+/*********************/
+/*                   */
+/*  Dezend for PHP5  */
+/*         NWS       */
+/*      Nulled.WS    */
+/*                   */
+/*********************/
+
+require_once( LANG_UI_PATH."custbuilds.php" );
+echo "<p></p>\r\n<table cellpadding=\"1\" cellspacing=\"1\" class=\"build_details\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td>";
+echo LANGUI_CUSTBU_ACD_t1;
+echo "</td>\r\n\t\t\t<td>";
+echo LANGUI_CUSTBU_ACD_t2;
+echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n";
+$_ac = 0;
+$troopMetadata = $this->gameMetadata['troops'];
+foreach ( $this->troopsUpgrade['available'] as $tid )
+{
+    ++$_ac;
+    $lvlTime = intval( $troopMetadata[$tid]['research_time_consume'] / $this->gameSpeed );
+    echo "\t\t<tr>\r\n\t\t\t<td class=\"desc\">\r\n\t\t\t\t<div class=\"tit\"><img class=\"unit u";
+    echo $tid;
+    echo "\" src=\"assets/x.gif\" alt=\"";
+    echo constant( "troop_".$tid );
+    echo "\" title=\"";
+    echo constant( "troop_".$tid );
+    echo "\"><a href=\"#\" onclick=\"return showManual(3,";
+    echo $tid;
+    echo ");\">";
+    echo constant( "troop_".$tid );
+    echo "</a></div>\r\n\t\t\t\t<div class=\"details\">\r\n\t\t\t\t\t<img class=\"r1\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_1;
+    echo "\" title=\"";
+    echo item_title_1;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $troopMetadata[$tid]['research_resources'][1];
+    echo "</span>|<img class=\"r2\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_2;
+    echo "\" title=\"";
+    echo item_title_2;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $troopMetadata[$tid]['research_resources'][2];
+    echo "</span>|<img class=\"r3\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_3;
+    echo "\" title=\"";
+    echo item_title_3;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $troopMetadata[$tid]['research_resources'][3];
+    echo "</span>|<img class=\"r4\" src=\"assets/x.gif\" alt=\"";
+    echo item_title_4;
+    echo "\" title=\"";
+    echo item_title_4;
+    echo "\">";
+    echo "<s";
+    echo "pan class=\"little_res\">";
+    echo $troopMetadata[$tid]['research_resources'][4];
+    echo "</span>|<img class=\"clock\" src=\"assets/x.gif\" alt=\"";
+    echo text_period_lang;
+    echo "\" title=\"";
+    echo text_period_lang;
+    echo "\">";
+    echo ( $lvlTime );
+    echo $this->getResourceGoldExchange( $troopMetadata[$tid]['research_resources'], 0, $this->buildingIndex );
+    echo "\t\t\t\t</div>\r\n\t\t\t\t";
+    echo $this->getActionText2( $troopMetadata[$tid]['research_resources'] );
+    echo "\t\t\t</td>\r\n\t\t\t<td class=\"act\">";
+    echo $this->getActionText3( $troopMetadata[$tid]['research_resources'], "a=".$tid, LANGUI_CUSTBU_ACD_t8, $this->troopsUpgradeType );
+    echo "</td>\r\n\t\t</tr>\r\n\t\t";
+}
+echo "\t\t";
+if ( $_ac == 0 )
+{
+    echo "\t\t<tr><td colspan=\"2\">";
+    echo "<s";
+    echo "pan class=\"none\">";
+    echo LANGUI_CUSTBU_ACD_t3;
+    echo ".</span></td></tr>\r\n\t\t";
+}
+echo "\t</tbody>\r\n</table>\r\n";
+if ( 0 < sizeof( $this->troopsUpgrade['soon'] ) )
+{
+    echo "<p class=\"switch\"><a id=\"researchFutureLink\" href=\"javascript:showPane('researchFuture');\">";
+    echo LANGUI_CUSTBU_ACD_t4;
+    echo "</a></p>\r\n<table id=\"researchFuture\" class=\"build_details hide\" cellspacing=\"1\" cellpadding=\"1\">\r\n\t<thead>\r\n\t\t<tr><td colspan=\"2\">";
+    echo LANGUI_CUSTBU_ACD_t5;
+    echo ":</td></tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
+    $troopMetadata = $this->gameMetadata['troops'];
+    foreach ( $this->troopsUpgrade['soon'] as $tid )
+    {
+        echo "\t\t<tr>\r\n\t\t\t<td class=\"desc\">\r\n\t\t\t\t<div class=\"tit\"><img class=\"unit u";
+        echo $tid;
+        echo "\" src=\"assets/x.gif\" alt=\"";
+        echo constant( "troop_".$tid );
+        echo "\" title=\"";
+        echo ( "troop_".$tid );
+        echo "\"><a href=\"#\" onclick=\"return showManual(3,";
+        echo ");\">";
+        echo constant( "troop_".$tid );
+        echo "</a></div>\r\n\t\t\t</td>\r\n\t\t\t<td class=\"cond\">\r\n\t\t\t\t";
+        foreach ( $troopMetadata[$tid]['pre_requests'] as $k => $v )
+        {
+            echo "\t\t\t\t<a href=\"#\" onclick=\"return showManual(4,";
+            echo $k;
+            echo ");\">";
+            echo constant( "item_".$k );
+            echo "</a> ";
+            echo "<s";
+            echo "pan>";
+            echo level_lang;
+            echo " ";
+            echo $v;
+            echo "</span><br>\r\n\t\t\t\t";
+        }
+        echo "\t\t\t</td>\r\n\t\t</tr>\r\n\t\t";
+    }
+    echo "\t</tbody>\r\n</table>\r\n";
+    echo "<s";
+    echo "cript language=\"JavaScript\" type=\"text/javascript\">\r\nfunction showPane(list) {\r\n\tvar build_list = _(list);\r\n\tvar link = _(list+'Link');\r\n\r\n\tif (build_list.className == 'build_details hide') {\r\n\t\tbuild_list.className = 'build_details';\r\n\t\tlink.innerHTML = '";
+    echo LANGUI_CUSTBU_ACD_t6;
+    echo "';\r\n\t} else {\r\n\t\tbuild_list.className = 'build_details hide';\r\n\t\tlink.innerHTML = '";
+    echo LANGUI_CUSTBU_ACD_t4;
+    echo "';\r\n\t}\r\n}\r\n</script>\r\n";
+}
+if ( isset( $this->queueModel->tasksInQueue[$this->troopsUpgradeType] ) )
+{
+    $tid = $this->queueModel->tasksInQueue[$this->troopsUpgradeType][0]['proc_params'];
+    echo "<table cellpadding=\"1\" cellspacing=\"1\" class=\"under_progress\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td>";
+    echo LANGUI_CUSTBU_ACD_t7;
+    echo "</td>\r\n\t\t\t<td>";
+    echo text_period_lang;
+    echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td class=\"desc\"><img class=\"unit u";
+    echo $tid;
+    echo "\" src=\"assets/x.gif\" alt=\"";
+    echo constant( "troop_".$tid );
+    echo "\" title=\"";
+    echo constant( "troop_".$tid );
+    echo "\">";
+    echo constant( "troop_".$tid );
+    echo "</td>\r\n\t\t\t<td class=\"dur\">";
+    echo "<s";
+    echo "pan id=\"timer1\">";
+    echo ( $this->queueModel->tasksInQueue[$this->troopsUpgradeType][0]['remainingSeconds'] );
+    echo "</span></td>\r\n\t\t</tr>\r\n\t\t<tr class=\"next\"><td colspan=\"2\">&nbsp;</td></tr>\r\n\t</tbody>\r\n</table>\r\n";
+}
+?>
