@@ -239,8 +239,8 @@ if ( $this->selectedTabIndex == 0 )
         $m = new BuildModel( );
         foreach ( $qts as $qt )
         {
-            $resStr = explode( "|", $qt['proc_params'] )[1];
-            $merchantNum = explode( "|", $qt['proc_params'] )[0];
+            $resStr = explode( "|", $qt['proc_params'][1] );
+            $merchantNum = explode( "|", $qt['proc_params'][0] );
             $mResources = explode( " ", $resStr );
             $pn = $m->getPlayerName( $qt['player_id'] );
             $vn = $m->getVillageName( $qt['village_id'] );
@@ -326,8 +326,8 @@ if ( $this->selectedTabIndex == 0 )
         $m = new BuildModel( );
         foreach ( $qts as $qt )
         {
-            $resStr = explode( "|", $qt['proc_params'] )[1];
-            $merchantNum = explode( "|", $qt['proc_params'] )[0];
+            $resStr = explode( "|", $qt['proc_params'][1] );
+            $merchantNum = explode( "|", $qt['proc_params'][0] );
             $mResources = explode( " ", $resStr );
             $vn2 = $m->getVillageName( $qt['to_village_id'] );
             echo "<table class=\"traders\" cellpadding=\"1\" cellspacing=\"1\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<td><a href=\"profile.php?uid=";
@@ -455,8 +455,8 @@ else if ( $this->selectedTabIndex == 1 )
                 }
                 continue;
             }
-            $res2 = explode( "|", $this->merchantProperty['all_offers']->row['offer'] )[1];
-            $res1 = explode( "|", $this->merchantProperty['all_offers']->row['offer'] )[0];
+            $res2 = explode( "|", $this->merchantProperty['all_offers']->row['offer'][1] );
+            $res1 = explode( "|", $this->merchantProperty['all_offers']->row['offer'][0] );
             $resArr1 = explode( " ", $res1 );
             $needResources = array( "1" => $resArr1[0], "2" => $resArr1[1], "3" => $resArr1[2], "4" => $resArr1[3] );
             $res1_item_id = 0;
@@ -510,7 +510,7 @@ else if ( $this->selectedTabIndex == 1 )
             echo "\">";
             echo $this->merchantProperty['all_offers']->row['player_name'];
             echo "</a></td>\r\n\t\t\t<td class=\"dur\">";
-            echo ->intval( intval( $this->merchantProperty['all_offers']->row['timeInSeconds'] ) );
+            echo /*->intval(*/ intval( $this->merchantProperty['all_offers']->row['timeInSeconds'] /*)*/ );
             echo "</td>\r\n\t\t\t<td class=\"act none\">\r\n\t\t\t";
             $acceptResult = $this->_canAcceptOffer( $needResources, $giveResources, $this->merchantProperty['all_offers']->row['village_id'], $this->merchantProperty['all_offers']->row['alliance_only'], $aid, $this->merchantProperty['all_offers']->row['max_time'], $this->merchantProperty['all_offers']->row['timeInSeconds'] / 3600 * $this->merchantProperty['all_offers']->row['merchants_speed'] );
             switch ( $acceptResult )
@@ -526,7 +526,7 @@ else if ( $this->selectedTabIndex == 1 )
             }
             echo "\t\t\t</td>\r\n\t\t</tr>\r\n\t\t";
         }
-        $m->dispose( );
+       // $m->dispose( );
         echo "\t\t";
         if ( $_c == 0 )
         {
@@ -663,8 +663,8 @@ else
             echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
             while ( $this->merchantProperty['offers']->next( ) )
             {
-                $res2 = explode( "|", $this->merchantProperty['offers']->row['offer'] )[1];
-                $res1 = explode( "|", $this->merchantProperty['offers']->row['offer'] )[0];
+                $res2 = explode( "|", $this->merchantProperty['offers']->row['offer'][1] );
+                $res1 = explode( "|", $this->merchantProperty['offers']->row['offer'][0] );
                 $resArr1 = explode( " ", $res1 );
                 $res1_item_id = 0;
                 $res1_value = 0;

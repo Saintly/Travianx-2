@@ -130,7 +130,9 @@ if ( 0 < $_ac )
     echo "\"></p>";
 }
 echo "</form>\r\n";
-if ( [$this->buildProperties['building']['item_id']]isset( $this->queueModel->tasksInQueue[$this->troopsUpgradeType], $this->queueModel->tasksInQueue[$this->troopsUpgradeType] ) )
+//if ( [$this->buildProperties['building']['item_id']]isset( $this->queueModel->tasksInQueue[$this->troopsUpgradeType], $this->queueModel->tasksInQueue[$this->troopsUpgradeType] ) )
+if ( isset( $this->queueModel->tasksInQueue[$this->troopsUpgradeType], $this->queueModel->tasksInQueue[$this->troopsUpgradeType][$this->buildProperties['building']['item_id']] ) )
+
 {
     $qts = $this->queueModel->tasksInQueue[$this->troopsUpgradeType][$this->buildProperties['building']['item_id']];
     echo "<table cellpadding=\"1\" cellspacing=\"1\" class=\"under_progress\">\r\n\t";
@@ -160,11 +162,13 @@ if ( [$this->buildProperties['building']['item_id']]isset( $this->queueModel->ta
     echo text_period_lang;
     echo "</td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t";
     $_f = TRUE;
+	$nextTroopTime = 0; // <- just for fix error
     foreach ( $qts as $qt )
     {
         $tid = $qt['proc_params'];
         $troopTime = $qt['execution_time'] - ( $qt['execution_time'] * $qt['threads'] - $qt['remainingSeconds'] );
-        if ( $troopTime < $nextTroopTime || $Var_6144 )
+        //if ( $troopTime < $nextTroopTime || $Var_6144 )
+        if ( $troopTime < $nextTroopTime || $_f )
         {
             $_f = FALSE;
             $nextTroopTime = $troopTime;
@@ -192,7 +196,6 @@ if ( [$this->buildProperties['building']['item_id']]isset( $this->queueModel->ta
     echo " ";
     echo "<s";
     echo "pan id=\"timer1\">";
-    echo ( $nextTroopTime );
+    echo WebHelper::secondstostring( $nextTroopTime );
     echo "</span></td></tr>\r\n\t</tbody>\r\n</table>\r\n";
 }
-?>

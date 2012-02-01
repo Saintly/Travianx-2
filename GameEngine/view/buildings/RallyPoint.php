@@ -9,20 +9,15 @@ echo LANGUI_CUSTBU_RP_p2;
 echo "</a>\r\n | <a href=\"warsm.php\">";
 echo LANGUI_CUSTBU_RP_p3;
 echo "</a>\r\n</div>\r\n\r\n\r\n";
-if ( 0 < sizeof(  ) )
-{
-    $m = new BuildModel( );
-    echo "<h4>";
-    echo LANGUI_CUSTBU_RP_t1;
-    echo "</h4>\r\n";
-    foreach ( $this->rallyPointProperty['war_to_village'] as $taskTable )
-    {
-        $procType = $taskTable['proc_type'];
-        $resources = NULL;
-        $action1 = "";
-        switch ( $procType )
-        {
-            case QS_WAR_REINFORCE :
+if ( 0 < sizeof( $this->rallyPointProperty['war_to_village'] ) ){
+	$m = new BuildModel( );
+	echo "<h4>".LANGUI_CUSTBU_RP_t1."</h4>\r\n";
+	foreach ( $this->rallyPointProperty['war_to_village'] as $taskTable ){
+		$procType = $taskTable['proc_type'];
+		$resources = NULL;
+		$action1 = "";
+		switch ( $procType ){
+			case QS_WAR_REINFORCE :
                 $_arr = explode( "|", $taskTable['proc_params'] );
                 $troopsBack = $_arr[sizeof( $_arr ) - 1] == 1;
                 $action1 = $troopsBack ? LANGUI_CUSTBU_RP_t2 : LANGUI_CUSTBU_RP_t10;
@@ -53,8 +48,8 @@ if ( 0 < sizeof(  ) )
         $troops = array( );
         foreach ( $troopsStr as $s )
         {
-            $tnum = explode( " ", $s )[1];
-            $tid = explode( " ", $s )[0];
+            $tnum = explode( " ", $s[1] );
+            $tid = explode( " ", $s[0] );
             if ( $tnum == 0 - 1 )
             {
                 $hasHero = TRUE;
@@ -138,8 +133,7 @@ if ( 0 < sizeof(  ) )
         echo "\">\r\n\t\t\t\t<div class=\"in small\">";
         echo text_in_lang;
         echo " ";
-        echo "<s";
-        echo "pan id=\"timer1\">";
+        echo "<span id=\"timer1\">";
         echo ( $taskTable['remainingSeconds'] );
         echo "</span> ";
         echo time_hour_lang;
@@ -235,8 +229,8 @@ if ( 0 < sizeof( $this->rallyPointProperty['war_from_village'] ) )
         $troops = array( );
         foreach ( $troopsStr as $s )
         {
-            $tnum = explode( " ", $s )[1];
-            $tid = explode( " ", $s )[0];
+            $tnum = explode( " ", $s[1] );
+            $tid = explode( " ", $s[0] );
             if ( $tnum == 0 - 1 )
             {
                 $hasHero = TRUE;
@@ -305,8 +299,7 @@ if ( 0 < sizeof( $this->rallyPointProperty['war_from_village'] ) )
         echo "\">\r\n\t\t\t\t<div class=\"in small\">";
         echo text_in_lang;
         echo " ";
-        echo "<s";
-        echo "pan id=\"timer1\">";
+        echo "<span id=\"timer1\">";
         echo ( $taskTable['remainingSeconds'] );
         echo "</span> ";
         echo time_hour_lang;
@@ -600,8 +593,7 @@ if ( 0 < sizeof( $this->rallyPointProperty['troops_out_village']['troopsTable'] 
         }
         else
         {
-            echo "<s";
-            echo "pan class=\"none\">[?]</span>";
+            echo "<span class=\"none\">[?]</span>";
         }
         echo "</a></td>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody class=\"units\">\r\n\t\t<tr>\r\n\t\t\t<th>&nbsp;</th>\r\n\t\t\t";
         foreach ( $troopTable['troops'] as $tid => $tnum )
@@ -676,8 +668,7 @@ if ( 0 < sizeof( $this->rallyPointProperty['troops_out_village']['troopsTable'] 
         }
         else
         {
-            echo "<s";
-            echo "pan class=\"none\">[?]</span>";
+            echo "<span class=\"none\">[?]</span>";
         }
         echo "</td>\r\n\t\t\t<td colspan=\"";
         echo $colspan;
@@ -811,8 +802,8 @@ else
                     $troops = array( );
                     foreach ( $troopsStr as $s )
                     {
-                        $tnum = explode( " ", $s )[1];
-                        $tid = explode( " ", $s )[0];
+                        $tnum = explode( " ", $s[1] );
+                        $tid = explode( " ", $s[0] );
                         if ( $tnum == 0 - 1 )
                         {
                             $hasHero = TRUE;
@@ -1011,5 +1002,4 @@ else
         }
     }
 }
-}
-?>
+//}

@@ -23,8 +23,7 @@ foreach ( $this->troopsUpgrade as $tid => $ulevel )
     echo ");\">";
     echo constant( "troop_".$tid );
     echo "</a> ";
-    echo "<s";
-    echo "pan class=\"info\">(";
+    echo "<span class=\"info\">(";
     echo level_lang2;
     echo " ";
     echo $ulevel;
@@ -33,32 +32,28 @@ foreach ( $this->troopsUpgrade as $tid => $ulevel )
     echo "\" title=\"";
     echo item_title_1;
     echo "\">";
-    echo "<s";
-    echo "pan class=\"little_res\">";
+    echo "<span class=\"little_res\">";
     echo $lvl['resources'][1];
     echo "</span>|<img class=\"r2\" src=\"assets/x.gif\" alt=\"";
     echo item_title_2;
     echo "\" title=\"";
     echo item_title_2;
     echo "\">";
-    echo "<s";
-    echo "pan class=\"little_res\">";
+    echo "<span class=\"little_res\">";
     echo $lvl['resources'][2];
     echo "</span>|<img class=\"r3\" src=\"assets/x.gif\" alt=\"";
     echo item_title_3;
     echo "\" title=\"";
     echo item_title_3;
     echo "\">";
-    echo "<s";
-    echo "pan class=\"little_res\">";
+    echo "<span class=\"little_res\">";
     echo $lvl['resources'][3];
     echo "</span>|<img class=\"r4\" src=\"assets/x.gif\" alt=\"";
     echo item_title_4;
     echo "\" title=\"";
     echo item_title_4;
     echo "\">";
-    echo "<s";
-    echo "pan class=\"little_res\">";
+    echo "<span class=\"little_res\">";
     echo $lvl['resources'][4];
     echo "</span>|<img class=\"clock\" src=\"assets/x.gif\" alt=\"";
     echo text_period_lang;
@@ -77,8 +72,7 @@ echo "\t\t";
 if ( $_ac == 0 )
 {
     echo "\t\t<tr><td colspan=\"2\">";
-    echo "<s";
-    echo "pan class=\"none\">";
+    echo "<span class=\"none\">";
     echo LANGUI_CUSTBU_BLK_t2;
     echo "</span></td></tr>\r\n\t\t";
 }
@@ -100,15 +94,12 @@ if ( isset( $this->queueModel->tasksInQueue[$this->troopsUpgradeType] ) )
     echo "\">";
     echo constant( "troop_".$tid );
     echo "  ";
-    echo "<s";
-    echo "pan class=\"info\">(";
+    echo "<span class=\"info\">(";
     echo level_lang2;
     echo " ";
     echo $ulevel;
     echo ")</span></td>\r\n\t\t\t<td class=\"dur\">";
-    echo "<s";
-    echo "pan id=\"timer1\">";
+    echo "<span id=\"timer1\">";
     echo (  );
     echo "</span></td>\r\n\t\t</tr>\r\n\t\t<tr class=\"next\"><td colspan=\"2\">&nbsp;</td></tr>\r\n\t</tbody>\r\n</table>\r\n";
 }
-?>
