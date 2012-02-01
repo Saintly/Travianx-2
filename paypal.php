@@ -1,5 +1,5 @@
 <?php
-require( '.' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'boot.php' );
+require('.'.DIRECTORY_SEPARATOR.'GameEngine'.DIRECTORY_SEPARATOR.'boot.php');
 require_once( MODEL_PATH 	. 'payment.php' );
 
 
